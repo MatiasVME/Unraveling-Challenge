@@ -17,7 +17,7 @@ func intersection(o1, f1, o2, f2):
 	# obtener y
 	var yy = m1 * xx + b1
 	
-	if ((-xx < min(o1.x, f1.x)) or (-xx > max(o1.x, f1.x)) or (-yy >= max(o2.y, f2.y))):
+	if ((-xx - 1 < min(o1.x, f1.x)) or (-xx + 1 > max(o1.x, f1.x)) or (-yy + 1 > max(o2.y, f2.y)) or (-yy - 1 < min(o2.y, f2.y))):
 		return null
 	else:
 		return Vector2 (-xx, -yy)

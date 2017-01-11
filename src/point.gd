@@ -12,7 +12,7 @@ func _input(event):
 func _process(delta):
 	if is_inside:
 		self.set_global_pos(get_global_mouse_pos())
-		print("Pos: ", get_pos().x, ", ", get_pos().y)
+		#print("Pos: ", get_pos().x, ", ", get_pos().y)
 
 func _on_area_input_event( viewport, event, shape_idx ):
 	_click_inside(event)

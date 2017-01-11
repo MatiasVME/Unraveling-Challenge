@@ -6,4 +6,22 @@
 
 script/script = ExtResource( 1 )
 
+[node name="num_inter" type="Label" parent="."]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 427.0
+margin/bottom = 30.0
+text = "Intersecciones: 999"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 

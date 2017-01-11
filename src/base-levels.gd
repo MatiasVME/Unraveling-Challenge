@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var res_point = load("res://scenes/point.tscn")
+onready var lab_inter = get_node("num_inter")
 
 func _ready():
 	set_process(true)
@@ -24,6 +25,7 @@ func _ready():
 
 func _process(delta):
 	update()
+	pass
 
 func _draw():
 	#draw_line(Vector2(100, 100), Vector2(200, 200), Color(1,0,0), 5)
@@ -62,6 +64,7 @@ func _level(level):
 		j = 0
 		
 		# Muestra las colisiones
+		var num_inter = 0
 		
 		while i < lines.size():
 			while j <= lines.size():
@@ -69,6 +72,10 @@ func _level(level):
 					var inter = calc.intersection(lines[i][0], lines[i][1], lines[j + 1][0], lines[j + 1][1])
 					if inter != null:
 						draw_circle(inter, 10, Color(0.5, 0.5, 0, 0.5))
+						num_inter += 1
 				j += 1
 			i += 1
 			j = i
+		
+		lab_inter.set_text(str(num_inter))
+		num_inter = 0
