@@ -24,19 +24,17 @@ func _ready():
 		print(current_points, ": ", instance_point.get_pos().x, ", ", instance_point.get_pos().y)
 
 func _process(delta):
+	
+	var points = get_tree().get_nodes_in_group("Points")
+	
+	# Si se sale de los límites mueve los puntos a un lugar cercano
+	for i in points:
+		is_outline(i, delta)
+	
 	update()
 	pass
 
-func _draw():
-	#draw_line(Vector2(100, 100), Vector2(200, 200), Color(1,0,0), 5)
-	#draw_line(Vector2(200, 100), get_global_mouse_pos(), Color(1,1,0), 5)
-	#draw_circle(Vector2(150, 150), 10, Color(0,1,1))
-	
-	#var inter = calc.intersection(Vector2(100, 100), Vector2(200, 200), Vector2(200, 100), get_global_mouse_pos())
-	#print(inter.x, ", ", inter.y)
-	#if inter != null:
-	#	draw_circle(inter, 8, Color(1, 0, 0))
-	
+func _draw():	
 	if global.get_current_level() == 1:
 		_level(1)
 
@@ -79,3 +77,24 @@ func _level(level):
 		
 		lab_inter.set_text(str(num_inter))
 		num_inter = 0
+
+const MOV_VELOCITY = 500
+
+func is_outline(point, delta):
+	# Si se va hacia la derecha
+	if (point.get_pos().x > global.RES_X - 50):
+		var pos = point.get_pos()
+		point.set_pos(Vector2(pos.x - MOV_VELOCITY * delta, pos.y))
+	# Si se va hacia la izquierda
+	if (point.get_pos().x < 0 + 50):
+		var pos = point.get_pos()
+		point.set_pos(Vector2(pos.x + MOV_VELOCITY * delta, pos.y))
+	# Si se va hacia abajo
+	if (point.get_pos().y > global.RES_Y - 50):
+		var pos = point.get_pos()
+		point.set_pos(Vector2(pos.x, pos.y - MOV_VELOCITY * delta))
+	# Si se va hacia arriba
+	if (point.get_pos().y < 0 + 50):
+		var pos = point.get_pos()
+		point.set_pos(Vector2(pos.x, pos.y + MOV_VELOCITY * delta))
+	
