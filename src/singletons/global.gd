@@ -5,8 +5,11 @@ const RES_Y = 720
 
 var current_level = 1 setget set_current_level, get_current_level
 
-var point_for_level = {
-		level_1 = 4,
+var levels = {
+		level_1 = {
+			points = 4,
+			min_inter = 1
+		},
 		level_2 = 5
 	}
 
