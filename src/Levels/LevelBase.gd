@@ -1,11 +1,14 @@
 extends Node2D
 
 var lines = []
-var num_inter = 0 # Numero de intersecciones
+var cont_inter = 0 # Contador de intersecciones
+var num_inter = 0 # Número de intersecciones
 onready var points = get_tree().get_nodes_in_group("Points")
 
 func _ready():
 	set_process(true)
+	print("ready")
+	print(points)
 	
 func _process(delta):
 	update_points()
@@ -40,10 +43,13 @@ func show_collision():
 				var inter = Calc.intersection(lines[i][0], lines[i][1], lines[j + 1][0], lines[j + 1][1])
 				if inter != null:
 					draw_circle(inter, 10, Color(0.5, 0.5, 0, 0.5))
-					num_inter += 1
+					cont_inter += 1
 			j += 1
 		i += 1
 		j = i
+	
+	num_inter = cont_inter
+	cont_inter = 0
 
 func update_points():
 	points = get_tree().get_nodes_in_group("Points")
